@@ -19,18 +19,18 @@ struct FeedPageView: View {
             accentGlow
             bottomFade
 
-            // Right-side action buttons
+            // Right-side action buttons — sit above the comment input bar
             FeedActionButtons(post: post)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 16)
-                .padding(.bottom, 130)
+                .padding(.bottom, 230)
 
-            // Bottom content
+            // Bottom content: user info, comments, input bar — pushed above tab bar
             VStack(alignment: .leading, spacing: 0) {
                 FeedPostOverlay(post: post)
                 Spacer().frame(height: 14)
                 CommentInputBar()
-                Spacer().frame(height: 16)
+                Spacer().frame(height: 90) // clears tab bar + home indicator
             }
         }
         // Top controls sit just below the status bar
@@ -44,14 +44,11 @@ struct FeedPageView: View {
             }
             .padding(.top, safeAreaTop + 10)
         }
-        // Video meta badges (duration + mute) below the top controls on right
+        // Mute icon only (no duration badge)
         .overlay(alignment: .topTrailing) {
-            VStack(alignment: .trailing, spacing: 8) {
-                videoDurationBadge
-                muteIcon
-            }
-            .padding(.top, safeAreaTop + 60)
-            .padding(.trailing, 14)
+            muteIcon
+                .padding(.top, safeAreaTop + 62)
+                .padding(.trailing, 16)
         }
         .ignoresSafeArea()
     }
@@ -112,16 +109,7 @@ struct FeedPageView: View {
         .padding(.horizontal, 16)
     }
 
-    // MARK: - Video badges
-
-    private var videoDurationBadge: some View {
-        Text(post.videoDuration)
-            .font(.system(size: 12, weight: .semibold))
-            .foregroundStyle(.white)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Capsule().fill(Color.black.opacity(0.55)))
-    }
+    // MARK: - Video badge
 
     private var muteIcon: some View {
         Image(systemName: "speaker.slash.fill")
