@@ -3,6 +3,7 @@ import SwiftUI
 /// A single full-screen reel-style page with all overlaid controls.
 struct FeedPageView: View {
     let post: FeedPost
+    let isActive: Bool
     @Binding var selectedCategoryID: UUID
     let onSearchTap: () -> Void
 
@@ -15,7 +16,14 @@ struct FeedPageView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            backgroundGradient
+            // Bundled video or gradient fallback
+            if let name = post.videoBundleName,
+               let url = Bundle.main.url(forResource: name, withExtension: "mp4") {
+                VideoPlayerView(url: url, isActive: isActive)
+                    .ignoresSafeArea()
+            } else {
+                backgroundGradient
+            }
             accentGlow
             bottomFade
 
@@ -43,12 +51,6 @@ struct FeedPageView: View {
                 )
             }
             .padding(.top, safeAreaTop + 4)
-        }
-        // Mute icon only (no duration badge)
-        .overlay(alignment: .topTrailing) {
-            muteIcon
-                .padding(.top, safeAreaTop + 62)
-                .padding(.trailing, 16)
         }
         .ignoresSafeArea()
     }
@@ -109,19 +111,13 @@ struct FeedPageView: View {
         .padding(.horizontal, 16)
     }
 
-    // MARK: - Video badge
-
-    private var muteIcon: some View {
-        Image(systemName: "speaker.slash.fill")
-            .font(.system(size: 15, weight: .medium))
-            .foregroundStyle(.white.opacity(0.75))
-    }
 }
 
 #Preview {
     @Previewable @State var selectedID = FeedCategory.mockCategories[0].id
     FeedPageView(
         post: FeedPost.mockFeed[0],
+        isActive: true,
         selectedCategoryID: $selectedID,
         onSearchTap: {}
     )

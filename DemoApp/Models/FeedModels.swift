@@ -9,8 +9,8 @@ struct FeedPost: Identifiable {
     let timeAgo: String
     let caption: String
     let backgroundGradient: [Color]
-    let accentColor: Color       // dominant colour for overlay tinting
-    let videoDuration: String    // e.g. "0:47"
+    let accentColor: Color
+    let videoBundleName: String? // bundle filename without extension, nil → gradient fallback
     let likesCount: String
     let sharesCount: String
     let comments: [FeedComment]

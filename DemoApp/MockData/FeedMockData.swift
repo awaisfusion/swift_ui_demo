@@ -3,82 +3,76 @@ import SwiftUI
 extension FeedPost {
     static let mockFeed: [FeedPost] = [
 
-        // --- Post 1: Sunset hike (warm golden landscape)
+        // --- F1 Miami aerial drone reel
         FeedPost(
-            username: "adventurer_joe",
-            handle: "@adventurer_joe",
+            username: "remotepilotmike",
+            handle: "@remotepilotmike",
             isVerified: true,
             timeAgo: "2h ago",
-            caption: "Chasing sunsets and good vibes.\nLife is better out here. 🌅",
+            caption: "F1 Miami Grand Prix from above. 🚁🏎️\nThis view never gets old.",
             backgroundGradient: [
-                Color(red: 0.18, green: 0.28, blue: 0.52),   // deep sky blue
-                Color(red: 0.55, green: 0.30, blue: 0.08),   // burnt orange
-                Color(red: 0.72, green: 0.42, blue: 0.05),   // golden
-                Color(red: 0.22, green: 0.12, blue: 0.04),   // dark earth
-                Color(red: 0.06, green: 0.06, blue: 0.10)    // near black
+                Color(red: 0.08, green: 0.04, blue: 0.02),
+                Color(red: 0.50, green: 0.15, blue: 0.02),
+                Color(red: 0.06, green: 0.04, blue: 0.04)
             ],
-            accentColor: Color(red: 0.72, green: 0.42, blue: 0.05),
-            videoDuration: "0:47",
+            accentColor: Color(red: 0.90, green: 0.25, blue: 0.05),
+            videoBundleName: "racing1",
             likesCount: "28.7K",
             sharesCount: "1,142",
             comments: [
-                FeedComment(handle: "@explorewithanna", text: "Unreal view! 🤩",            avatarColor: .pink),
-                FeedComment(handle: "@hiking.daily",    text: "Added to my bucket list! 🏕", avatarColor: .green),
-                FeedComment(handle: "@travelfar",       text: "Nature never disappoints. ✨", avatarColor: .orange)
+                FeedComment(handle: "@f1fanatic",    text: "That circuit view 🔥",        avatarColor: .red),
+                FeedComment(handle: "@trackday_tom", text: "Miami looks insane!",          avatarColor: .orange),
+                FeedComment(handle: "@pitlane_pro",  text: "Best race of the season 🏁",  avatarColor: .yellow)
             ],
-            avatarColor: Color(red: 0.55, green: 0.35, blue: 0.20)
+            avatarColor: Color(red: 0.85, green: 0.15, blue: 0.05)
         ),
 
-        // --- Post 2: Ocean / surf reel (cool blues & teals)
+        // --- F1 Miami Lap 1 onboard
         FeedPost(
-            username: "wave_rider",
-            handle: "@wave_rider",
+            username: "f1miami_official",
+            handle: "@f1miami_official",
             isVerified: true,
             timeAgo: "4h ago",
-            caption: "Nothing beats a morning session. 🏄‍♂️\nThe ocean never gets old.",
+            caption: "Lap 1 chaos at Miami 2025. 💨\nEvery tenth counts from the start.",
             backgroundGradient: [
-                Color(red: 0.04, green: 0.18, blue: 0.45),   // deep sea
-                Color(red: 0.05, green: 0.40, blue: 0.62),   // ocean blue
-                Color(red: 0.10, green: 0.62, blue: 0.68),   // teal surf
-                Color(red: 0.03, green: 0.22, blue: 0.38),   // mid-water
-                Color(red: 0.01, green: 0.06, blue: 0.14)    // deep
+                Color(red: 0.02, green: 0.04, blue: 0.10),
+                Color(red: 0.05, green: 0.12, blue: 0.35),
+                Color(red: 0.02, green: 0.02, blue: 0.08)
             ],
-            accentColor: Color(red: 0.10, green: 0.62, blue: 0.68),
-            videoDuration: "1:03",
-            likesCount: "52.1K",
-            sharesCount: "3,204",
+            accentColor: Color(red: 0.10, green: 0.35, blue: 0.90),
+            videoBundleName: "racing2",
+            likesCount: "41.3K",
+            sharesCount: "2,088",
             comments: [
-                FeedComment(handle: "@surfer_sam",  text: "Ocean is life 🏄",   avatarColor: .cyan),
-                FeedComment(handle: "@beach_vibes", text: "Which spot is this?", avatarColor: .teal),
-                FeedComment(handle: "@saltyhair",   text: "Goals 🌊",            avatarColor: .blue)
+                FeedComment(handle: "@velodrome_vids", text: "That Lap 1 start 😩",         avatarColor: .blue),
+                FeedComment(handle: "@motorsport_hq",  text: "Turn 1 action was wild 💙",   avatarColor: .cyan),
+                FeedComment(handle: "@laptime_lab",    text: "VER P1 again, no surprise 👑", avatarColor: .indigo)
             ],
-            avatarColor: .cyan
+            avatarColor: Color(red: 0.10, green: 0.35, blue: 0.90)
         ),
 
-        // --- Post 3: City night-life (neon purples & city lights)
+        // --- Tate McRae F1 aesthetic edit
         FeedPost(
-            username: "cityexplorer",
-            handle: "@cityexplorer",
-            isVerified: false,
-            timeAgo: "5h ago",
-            caption: "The city never sleeps. Neither do I. 🌃\nNeon everything.",
+            username: "tatemcrae.f1",
+            handle: "@tatemcrae.f1",
+            isVerified: true,
+            timeAgo: "1h ago",
+            caption: "Just keep watching 🎶🏎️\nThis edit hits different at 300 km/h.",
             backgroundGradient: [
-                Color(red: 0.04, green: 0.02, blue: 0.12),   // deep night
-                Color(red: 0.18, green: 0.06, blue: 0.38),   // dark purple
-                Color(red: 0.50, green: 0.10, blue: 0.70),   // neon purple
-                Color(red: 0.15, green: 0.04, blue: 0.28),   // mid night
-                Color(red: 0.02, green: 0.01, blue: 0.08)    // black
+                Color(red: 0.05, green: 0.02, blue: 0.12),
+                Color(red: 0.20, green: 0.05, blue: 0.35),
+                Color(red: 0.08, green: 0.02, blue: 0.10)
             ],
-            accentColor: Color(red: 0.50, green: 0.10, blue: 0.70),
-            videoDuration: "0:34",
-            likesCount: "14.2K",
-            sharesCount: "876",
+            accentColor: Color(red: 0.65, green: 0.10, blue: 0.90),
+            videoBundleName: "racing3",
+            likesCount: "54.1K",
+            sharesCount: "3,207",
             comments: [
-                FeedComment(handle: "@nightowl",   text: "City vibes 🏙️",       avatarColor: .blue),
-                FeedComment(handle: "@urban_lens", text: "Which city is this?",  avatarColor: .purple),
-                FeedComment(handle: "@neonchaser", text: "The lights omg 😍",    avatarColor: .indigo)
+                FeedComment(handle: "@aesthetic_pits",  text: "Tate + F1 is everything 💜",     avatarColor: .purple),
+                FeedComment(handle: "@v10_vibes",       text: "This edit is unreal 🔥",          avatarColor: .indigo),
+                FeedComment(handle: "@pitwall_edits",   text: "Song choice is perfect 🎵",       avatarColor: .pink)
             ],
-            avatarColor: .purple
+            avatarColor: Color(red: 0.65, green: 0.10, blue: 0.90)
         )
     ]
 }
