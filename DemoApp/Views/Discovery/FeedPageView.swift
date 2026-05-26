@@ -42,7 +42,7 @@ struct FeedPageView: View {
                     selectedID: $selectedCategoryID
                 )
             }
-            .padding(.top, safeAreaTop + 10)
+            .padding(.top, safeAreaTop + 4)
         }
         // Mute icon only (no duration badge)
         .overlay(alignment: .topTrailing) {

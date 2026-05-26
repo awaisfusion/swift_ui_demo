@@ -49,26 +49,17 @@ private struct CategoryPill: View {
     }
 
     // MARK: - Glass background
+    // Pure white-alpha fills — no material blur so the gradient shows through cleanly.
 
-    @ViewBuilder
     private var pillBackground: some View {
-        if isSelected {
-            // Bright frosted glass — selected state
-            Capsule()
-                .fill(.thinMaterial)
-                .overlay(Capsule().fill(Color.white.opacity(0.22)))
-        } else {
-            // Dim frosted glass — unselected state
-            Capsule()
-                .fill(.ultraThinMaterial)
-                .overlay(Capsule().fill(Color.white.opacity(0.06)))
-        }
+        Capsule()
+            .fill(Color.white.opacity(isSelected ? 0.30 : 0.13))
     }
 
     private var pillBorder: some View {
         Capsule()
             .stroke(
-                Color.white.opacity(isSelected ? 0.60 : 0.18),
+                Color.white.opacity(isSelected ? 0.70 : 0.25),
                 lineWidth: isSelected ? 1.0 : 0.5
             )
     }
