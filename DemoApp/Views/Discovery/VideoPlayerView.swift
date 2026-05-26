@@ -1,11 +1,16 @@
 import SwiftUI
 import AVFoundation
 
+extension Notification.Name {
+    static let feedPauseAll  = Notification.Name("feedPauseAll")
+    static let feedResumeActive = Notification.Name("feedResumeActive")
+}
+
 /// Full-screen looping video background using AVPlayerLayer.
 /// Fills the frame with .resizeAspectFill regardless of source aspect ratio.
 struct VideoPlayerView: UIViewRepresentable {
     let url: URL
-    let isActive: Bool  // pauses audio+video when this page is off-screen
+    let isActive: Bool
 
     func makeUIView(context: Context) -> PlayerUIView {
         let view = PlayerUIView()
@@ -26,6 +31,24 @@ final class PlayerUIView: UIView {
     private var looper: AVPlayerLooper?
     private var playerLayer: AVPlayerLayer?
     private var currentURL: URL?
+    /// Tracks whether this player should be playing — preserved across global pause/resume.
+    private var shouldBePlaying = false
+    private var observers: [Any] = []
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        let nc = NotificationCenter.default
+        observers.append(nc.addObserver(forName: .feedPauseAll, object: nil, queue: .main) { [weak self] _ in
+            // Pause without clearing shouldBePlaying so resume works.
+            self?.player?.pause()
+        })
+        observers.append(nc.addObserver(forName: .feedResumeActive, object: nil, queue: .main) { [weak self] _ in
+            guard let self, self.shouldBePlaying else { return }
+            self.player?.play()
+        })
+    }
+
+    required init?(coder: NSCoder) { fatalError() }
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -35,14 +58,20 @@ final class PlayerUIView: UIView {
         CATransaction.commit()
     }
 
-    func play()  { player?.play() }
-    func pause() { player?.pause() }
+    func play() {
+        shouldBePlaying = true
+        player?.play()
+    }
+
+    func pause() {
+        shouldBePlaying = false
+        player?.pause()
+    }
 
     func configure(url: URL) {
         guard url != currentURL else { return }
         currentURL = url
 
-        // Tear down previous
         playerLayer?.removeFromSuperlayer()
         looper = nil
         player = nil
@@ -51,7 +80,6 @@ final class PlayerUIView: UIView {
         let queuePlayer = AVQueuePlayer(playerItem: item)
         queuePlayer.isMuted = false
 
-        // AVPlayerLooper handles seamless looping
         looper = AVPlayerLooper(player: queuePlayer, templateItem: item)
 
         let layer = AVPlayerLayer(player: queuePlayer)
@@ -59,13 +87,13 @@ final class PlayerUIView: UIView {
         layer.frame = bounds
         self.layer.insertSublayer(layer, at: 0)
 
-        // Do NOT auto-play — caller controls play/pause via isActive
         player = queuePlayer
         playerLayer = layer
         backgroundColor = .black
     }
 
     deinit {
+        observers.forEach { NotificationCenter.default.removeObserver($0) }
         looper = nil
         player = nil
     }

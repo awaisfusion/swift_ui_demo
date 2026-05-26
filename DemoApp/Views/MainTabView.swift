@@ -8,7 +8,7 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             // Pass showChatRoom so feed pauses when chat is open
-            DiscoveryView(isChatOpen: $showChatRoom)
+            DiscoveryView(isChatOpen: $showChatRoom, isDiscoveryTab: selectedTab == 0)
                 .tabItem { Label("Discovery", systemImage: "globe") }
                 .tag(0)
 

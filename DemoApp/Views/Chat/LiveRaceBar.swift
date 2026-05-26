@@ -2,6 +2,12 @@ import SwiftUI
 
 /// Live race status strip pinned to the very bottom of the chat room.
 struct LiveRaceBar: View {
+    private var bottomSafeArea: CGFloat {
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?.keyWindow?.safeAreaInsets.bottom ?? 0
+    }
+
     var body: some View {
         HStack(spacing: 0) {
             liveIndicator
@@ -10,8 +16,9 @@ struct LiveRaceBar: View {
             Spacer()
             timingButton
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
+        .padding(.horizontal, 20)
+        .padding(.top, 12)
+        .padding(.bottom, bottomSafeArea + 12)
         .background(Color(red: 0.06, green: 0.06, blue: 0.09))
     }
 

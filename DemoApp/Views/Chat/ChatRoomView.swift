@@ -25,7 +25,6 @@ struct ChatRoomView: View {
                 LiveRaceBar()
             }
         }
-        .navigationBarHidden(true)
         .preferredColorScheme(.dark)
     }
 
@@ -78,7 +77,7 @@ struct ChatRoomView: View {
                     .background(Circle().fill(Color.white.opacity(0.12)))
             }
         }
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 20)
         .padding(.vertical, 10)
     }
 
@@ -108,8 +107,10 @@ struct ChatRoomView: View {
 
                     TypingIndicatorView(username: "Liam")
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
                         .padding(.bottom, 8)
                 }
+                .padding(.horizontal, 8)
             }
             .onAppear {
                 if let last = messages.last {

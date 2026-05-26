@@ -10,8 +10,8 @@ struct ChatInputBar: View {
             gifButton
             sendButton
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 14)
         .background(Color(red: 0.08, green: 0.08, blue: 0.10))
     }
 
