@@ -7,16 +7,15 @@ struct ChatRoomView: View {
 
     var body: some View {
         ZStack {
-            // Dark background with a warm ambient glow (mimics race-track atmosphere)
-            Color(red: 0.06, green: 0.06, blue: 0.09)
+            // F1 Miami track photo as full-screen background
+            Image("ChatBackground")
+                .resizable()
+                .scaledToFill()
                 .ignoresSafeArea()
 
-            LinearGradient(
-                colors: [.clear, Color(red: 0.40, green: 0.15, blue: 0.05).opacity(0.20)],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
+            // Dark overlay so text stays readable
+            Color.black.opacity(0.72)
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
                 navBar

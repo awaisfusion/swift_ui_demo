@@ -33,16 +33,6 @@ extension ChatMessage {
             usernameColor: .white
         ),
         ChatMessage(
-            username: "BlueFlag",
-            text: "DRS zone into turn 1 👀",
-            timestamp: "3:01:14 PM",
-            avatarColor: Color(red: 0.20, green: 0.20, blue: 0.40),
-            teamTag: nil,
-            isModerator: false,
-            reaction: .comment(32),
-            usernameColor: .white
-        ),
-        ChatMessage(
             username: "FastLane",
             text: "No spoilers. Keep it clean and respectful!",
             timestamp: "3:01:15 PM",
@@ -51,16 +41,6 @@ extension ChatMessage {
             isModerator: true,
             reaction: nil,
             usernameColor: Color(red: 0.60, green: 0.40, blue: 1.00)
-        ),
-        ChatMessage(
-            username: "Tifosi_88",
-            text: "Ferrari strategy better be on point today",
-            timestamp: "3:01:15 PM",
-            avatarColor: Color(red: 0.90, green: 0.10, blue: 0.10),
-            teamTag: nil,
-            isModerator: false,
-            reaction: .comment(18),
-            usernameColor: .white
         ),
         ChatMessage(
             username: "LewisHamilton",

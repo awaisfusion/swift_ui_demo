@@ -7,7 +7,8 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            DiscoveryView()
+            // Pass showChatRoom so feed pauses when chat is open
+            DiscoveryView(isChatOpen: $showChatRoom)
                 .tabItem { Label("Discovery", systemImage: "globe") }
                 .tag(0)
 
@@ -25,10 +26,9 @@ struct MainTabView: View {
         }
         .tint(.white)
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showChatRoom) {
-            NavigationStack {
-                ChatRoomView()
-            }
+        // fullScreenCover fills edge-to-edge including the status bar
+        .fullScreenCover(isPresented: $showChatRoom) {
+            ChatRoomView()
         }
     }
 }
